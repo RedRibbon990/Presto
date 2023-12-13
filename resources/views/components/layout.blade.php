@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{$title ?? 'Presto.it'}}</title>
 
+    @livewireStyles
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     {{$style ?? ''}}
 </head>
@@ -18,7 +19,8 @@
     </div>
 
     <x-footer />
-
+    
+    @livewireStyles
     <script src="{{asset('js/app.js')}}"></script>
     {{$script ?? ''}}
 
