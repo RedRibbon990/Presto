@@ -8,16 +8,16 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
+                @guest
+                <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">Registrati</a>
+                </li>
+                @else
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{route('announcements.create')}}">Nuovo Annuncio</a>
                 </li>
-                @guest
-                    <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">Registrati</a>
-                    </li>
-                @else
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {{Auth::user()->name}}

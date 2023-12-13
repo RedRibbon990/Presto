@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Announcement;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class CreateAnnouncement extends Component
@@ -29,11 +30,13 @@ class CreateAnnouncement extends Component
     public function store()
     {
         $category = Category::find($this->category);
-        $category->announcement()->create([
+        
+        $announcement = $category->announcement()->create([
             'title'=>$this->title,
             'body'=>$this->body,
             'price'=>$this->price,
         ]);
+        Auth::user()->announcements()->save($announcement);
     
         session()->flash('message', 'Annuncio inserito con successo');
         $this->cleanForm();
