@@ -1,11 +1,12 @@
 <div>
-    <h1>Crea il tuo annuncio</h1>
+    <h1 >Crea il tuo annuncio</h1>
 
     @if (session()->has('message'))
         <div class="flex flex-row justify-center my-2 alert alert-success">
             {{session('message')}}
         </div>        
     @endif
+
     <form wire:submit.prevent="store">
         @csrf
 

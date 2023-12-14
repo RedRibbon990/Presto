@@ -7,7 +7,7 @@
     <title>{{$title ?? 'Presto.it'}}</title>
 
     @livewireStyles
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    @Vite(['resources/css/app.css'])
     {{$style ?? ''}}
 </head>
 <body>

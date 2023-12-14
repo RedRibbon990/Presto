@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-12 text-center text-light">
                 <h1>Presto.it</h1>
-                <p class="h2 my-2 fw-bold">Ecco i nostri ultimi annunci</p>
+                <p class="h2 my-2 fw-bold">Ecco i nostri annunci</p>
                 <div class="row">
                     @foreach ($announcements as $announcement )
                         <div class="col-12 col-md-3 my-4 mx-5">
@@ -18,9 +18,9 @@
                                     <p class="card-footer">Pubblicato il {{$announcement->created_at->format('d/m/Y')}} Autore {{$announcement->user->name ?? 'N/A'}}</p>
                                 </div>
                             </div>
-
                         </div>
                     @endforeach
+                    {{$announcements->links()}}
                 </div>
             </div>
         </div>
