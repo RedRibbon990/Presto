@@ -31,7 +31,7 @@ class CreateAnnouncement extends Component
     {
         $category = Category::find($this->category);
         
-        $announcement = $category->announcement()->create([
+        $announcement = $category->announcements()->create([
             'title'=>$this->title,
             'body'=>$this->body,
             'price'=>$this->price,

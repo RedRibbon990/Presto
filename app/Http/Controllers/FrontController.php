@@ -10,7 +10,7 @@ class FrontController extends Controller
 {
     public function welcome()
     {
-        $announcements = Announcement::orderByDesc('created_at')->take(6)->paginate(6);
+        $announcements = Announcement::where('is_accepted', true)->orderByDesc('created_at')->take(6)->paginate(6);
         return view('welcome', compact('announcements'));
     }
     

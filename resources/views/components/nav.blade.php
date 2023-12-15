@@ -32,8 +32,17 @@
                             {{Auth::user()->name}}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">1</a></li>
-                            <li><a class="dropdown-item" href="#">2</a></li>
+                            @if (Auth::user()->is_revisor)
+                                <li><a class="dropdown-item" aria-current="page" href="{{route('revisor.index')}}">Zona revisore
+                                    <span class="position-absolute top0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        {{App\Models\Announcement::toBeRevisionedCount()}}
+                                        <span class="visually-hidden">
+                                            unread messages
+                                        </span>
+                                    </span>
+                                </a></li>
+                            @endif
+                            <li><a class="dropdown-item" href="#">Profilo</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('form-logout').submit();">Logout</a>
                             <form method="POST" action="{{ route('logout') }}" id="form-logout" class="d-none">
