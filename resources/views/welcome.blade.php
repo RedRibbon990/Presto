@@ -2,8 +2,8 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center text-light">
-                <h1>Presto.it</h1>
-                <p class="h2 my-2 fw-bold">Ecco i nostri ultimi annunci</p>
+                <h1>{{__('ui.welcome')}}</h1>
+                <p class="h2 my-2 fw-bold">{{__('ui.allAnnouncements')}} </p>
                 <div class="row">
                     @foreach ($announcements as $announcement )
                         <div class="col-12 col-sm-6 col-lg-4 my-4">

@@ -39,3 +39,6 @@ Route::get('/richiesta/revisore', [RevisorController::class, 'becomeRevisor'])->
     // Make user revisor
 Route::get('/rendi/revisore/{user}', [RevisorController::class, 'makeRevisor'])->name('make.revisor');
 
+// Set Language
+Route::post('/lingua/{lang}', [FrontController::class, 'setLanguage'])->name('set_language_locale');
+

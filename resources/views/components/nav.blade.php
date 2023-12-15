@@ -17,6 +17,15 @@
                         @endforeach
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <x-_locale lang='it' nation='it' />
+                </li>
+                <li class="nav-item">
+                    <x-_locale lang='en' nation='gb' />
+                </li>
+                <li class="nav-item">
+                    <x-_locale lang='es' nation='es' />
+                </li>
                 @guest
                     <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
                     <li><hr class="dropdown-divider"></li>
