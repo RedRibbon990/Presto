@@ -63,7 +63,7 @@
             </ul>
         </div>
 
-        <form  class="p-2">
+        <form  class="p-2 d-flex">
             <input type="search" name="query" placeholder="Cosa stai cercando?" aria-label="Search">
             <button type="submit" class="btn btn-outline-info">Cerca</button>
         </form>

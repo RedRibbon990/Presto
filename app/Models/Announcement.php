@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Image;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,6 +23,11 @@ class Announcement extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function images()
+    {
+        return $this->belongsTo(Image::class);
+    }
+
     public static function toBeRevisionedCount()
     {
         return Announcement::where('is_accepted', null)->count();
@@ -33,4 +39,6 @@ class Announcement extends Model
         $this->save();
         return true;
     }
+
+
 }
