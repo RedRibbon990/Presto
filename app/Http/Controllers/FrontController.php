@@ -16,6 +16,8 @@ class FrontController extends Controller
     
     public function categoryShow(Category $category)
     {
-        return view('categoryShow', compact('category'));
+        $announcements = $category->announcements()->paginate(8);
+        return view('categoryShow', compact('category', 'announcements'));
     }
+    
 }

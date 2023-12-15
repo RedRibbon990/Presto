@@ -20,7 +20,7 @@
 
     <x-footer />
     
-    @livewireStyles
+    @livewireScripts
     <script src="{{asset('js/app.js')}}"></script>
     {{$script ?? ''}}
 

@@ -15,11 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Announcement
 Route::get('/', [FrontController::class, 'welcome']);
+    // For Category
 Route::get('/categoria/{category}', [FrontController::class, 'categoryShow'])->name('categoryShow');
-
+    // Create
 Route::get('/nuovo/annuncio', [AnnouncementController::class, 'createAnnouncement'])->middleware('auth')->name('announcements.create');
-
+    // Details
 Route::get('/dettaglio/annuncio/{announcement}', [AnnouncementController::class, 'showAnnouncement'])->name('announcements.show');
-
+    // All
 Route::get('/tutti/annunci', [AnnouncementController::class, 'index'])->name('announcements.index');
