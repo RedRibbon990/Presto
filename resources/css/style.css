@@ -3,4 +3,27 @@ body {
     color: white;
 }
 
+.bgImage {
+    background-image: url('https://picsum.photos/200');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.bg-register {
+    background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');
+}
+
+.bg-login {
+    background-image: url('https://picsum.photos/id/30/1200/850');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    height: 100vh;
+}
+
+
+
 

@@ -1,7 +1,6 @@
 <x-layout>
-
-    <div class="container d-flex justify-content-center align-items-center vh-100">
-        <div class="card p-4">
+    <div class="container d-flex justify-content-center align-items-center vh-100 bg-register">
+        <div class="card p-4" style="max-width: 400px; width: 100%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);">
             <h1 class="text-center mb-4">Registrati</h1>
 
             <form action="{{ route('register') }}" method="POST" class="register-form">
@@ -19,7 +18,7 @@
                     @error('email')
                         <p class="text-danger">{{ $message }}</p>
                     @enderror
-                    <div class="form-text text-muted pb-2">We'll never share your Email with anyone else.</div>
+                    <div class="form-text text-muted pb-2">We'll never share your email with anyone else.</div>
                 </div>
 
                 <div class="mb-3">
@@ -30,7 +29,7 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="password_confirmation" class="form-label @error('password') is-invalid @enderror">Conferma password</label>
+                    <label for="password_confirmation" class="form-label">Conferma password</label>
                     <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" autocomplete="new-password">
                     @error('password')
                         <p class="text-danger">{{ $message }}</p>
@@ -40,5 +39,4 @@
             </form>
         </div>
     </div>
-
 </x-layout>
