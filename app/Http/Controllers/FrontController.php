@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Announcement;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -18,6 +19,14 @@ class FrontController extends Controller
     {
         $announcements = $category->announcements()->paginate(8);
         return view('categoryShow', compact('category', 'announcements'));
+    }
+
+    public function authorShow(User $user)
+    {
+        $announcements = $user->announcements->sortByDesc('created_at')->filter(function ($announcement) {
+            return $announcement->is_accepted == true;
+        });
+        return view('authorShow', compact('user', 'announcements'));
     }
     
     public function searchAnnouncements(Request $request)

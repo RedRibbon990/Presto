@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\RevisorController;
+use App\Models\Announcement;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FrontController::class, 'welcome']);
     // For Category
 Route::get('/categoria/{category}', [FrontController::class, 'categoryShow'])->name('categoryShow');
+    // For Author
+Route::get('/author/{user}', [FrontController::class, 'authorShow'])->name('announcement.byAuthor');
     // Create
 Route::get('/nuovo/annuncio', [AnnouncementController::class, 'createAnnouncement'])->middleware('auth')->name('announcements.create');
     // Details
