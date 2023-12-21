@@ -74,8 +74,14 @@
                                     <a href="{{ route('announcements.show', compact('announcement')) }}" class="btn btn-primary shadow">Visualizza</a>
                                     <a href="{{ route('categoryShow', ['category' => $announcement->category]) }}" class="my-2 border-top pt-2 border-dark card-link shadow btn btn-success">Categoria {{ $announcement->category ? $announcement->category->name : 'N/A' }}</a>
                                 </div>
-                                <div class="card-footer">
-                                    <small class="text-muted">Pubblicato il {{ $announcement->created_at ? $announcement->created_at->format('d/m/Y') : 'N/A' }} <br> Autore {{ $announcement->user ? $announcement->user->name ?? 'N/A' : 'N/A' }}</small>
+                                <div class="card-footer text-muted text-center">
+                                    <p class="mb-0">
+                                        Redatto il {{ $announcement->created_at->format('d/m/Y') }}<br>
+                                        Autore
+                                        <a href="{{ route('announcement.byAuthor', $announcement->user->id) }}" class="text-decoration-none">
+                                            {{ $announcement->user->name ?? 'Utente anonimo' }}
+                                        </a>
+                                    </p>
                                 </div>
                             </div>
                         </div>

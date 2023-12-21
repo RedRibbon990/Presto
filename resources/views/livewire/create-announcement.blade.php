@@ -53,23 +53,23 @@
                 <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
+        
         @if (!empty($images))
             <div class="row">
                 <div class="col-12">
                     <p>Photo preview:</p>
-                    <div class="row border border-4 border-info rounded shadow py-4">
+                    <div class="row border border-4 border-info d-flex justify-content-center rounded shadow py-4">
                         @foreach ($images as $key => $image)
-                            <div class="col my-3">
-                                <div class="img-preview mx-auto shadow rounded" style="background-image: url({{$image->temporaryUrl()}});"></div>
+                            <div class="col-md-4 my-3">
+                                <div class="img-preview mx-auto shadow rounded" style="background-image: url({{$image->temporaryUrl()}}); background-size: cover; padding-bottom: 66.67%;"></div>
                                 <button class="btn btn-danger shadow d-block text-center mt-2 mx-auto" type="button" wire:click="removeImage({{$key}})">Cancella</button>
                             </div>
                         @endforeach
                     </div>
                 </div>
             </div>
-            
         @endif
-
+    
         <button type="submit" class="btn btn-primary shadow px-4 py-2">Crea</button>
     </form>
 </div>
