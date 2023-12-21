@@ -40,21 +40,11 @@
                             <div class="card h-100 shadow rounded" style="width: 18rem;">
                                 <div id="imageCarousel{{$announcement->id}}" class="carousel slide" data-bs-ride="carousel">
                                     <div class="carousel-inner">
-                                        @forelse ($announcement->images as $image)
-                                            <div class="carousel-item @if ($loop->first) active @endif">
-                                                <img src="{{ Storage::url($image->path) }}" class="img-fluid p-3 rounded" alt="Image">
+                                        @foreach ($announcement->images as $image)
+                                            <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                                <img src="{{ $image->getUrl(400,300) }}" class="card-img-top p-3" alt="...">
                                             </div>
-                                        @empty
-                                            <div class="carousel-item active">
-                                                <img src="https://picsum.photos/id/27/1200/200" class="img-fluid p-3 rounded" alt="Placeholder Image">
-                                            </div>
-                                            <div class="carousel-item">
-                                                <img src="https://picsum.photos/id/29/1200/200" class="img-fluid p-3 rounded" alt="Placeholder Image">
-                                            </div>
-                                            <div class="carousel-item">
-                                                <img src="https://picsum.photos/id/28/1200/200" class="img-fluid p-3 rounded" alt="Placeholder Image">
-                                            </div>
-                                        @endforelse
+                                        @endforeach
                                     </div>
                                     @if (count($announcement->images) > 1)
                                         <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel{{$announcement->id}}" data-bs-slide="prev">

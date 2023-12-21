@@ -2,11 +2,13 @@
 
 namespace App\Livewire;
 
-use App\Models\Announcement;
-use App\Models\Category;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use App\Models\Category;
+use App\Jobs\ResizeImage;
+use App\Models\Announcement;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class CreateAnnouncement extends Component
 {
@@ -27,12 +29,12 @@ class CreateAnnouncement extends Component
         'body' => 'required|min:8',
         'category' => 'required',
         'price' => 'required|numeric',
-        'images.*' => 'image|max:2024',
-        'temporary_images.*' => 'image|max:2024',
+        'images.*' => 'image|mimes:avif,avi,jpeg|max:2024',
+        'temporary_images.*' => 'image|mimes:avif,avi,jpeg|max:2024',
     ];
 
     protected $messages = [
-        'required' => 'Il campo :attribute è richiesto',
+        'required' => 'Il campo :attribute è richiesto.',
         'min' => 'Il campo :attribute è troppo corto',
         'numeric' => 'Il campo :attribute deve essere un numero',
         'temporary_images.required' => 'L\'immagine è richiesta',
@@ -61,25 +63,42 @@ class CreateAnnouncement extends Component
     }
 
     public function store()
-    {
+{
+    try {
         // Validazione dei dati
         $validatedData = $this->validate();
-    
+
+        // Creazione dell'annuncio
         $this->announcement = Category::find($validatedData['category'])
             ->announcements()
             ->create($validatedData);
-        // Caricamento delle immagini
+
+        // Caricamento e ridimensionamento delle immagini
         if (count($this->images)) {
             foreach ($this->images as $image) {
-                $this->announcement->images()->create(['path' => $image->store('images', 'public')]);
+                $newFileName = "announcements/{$this->announcement->id}";
+                $newImage = $this->announcement->images()->create(['path' => $image->store($newFileName, 'public')]);
+
+                // Ridimensionamento dell'immagine
+                dispatch(new ResizeImage($newImage->path, 400, 300));
             }
+
+            // Eliminazione della directory temporanea di Livewire
+            File::deleteDirectory(storage_path('/app/livewire-tmp'));
         }
+
         // Associazione dell'annuncio all'utente autenticato
         Auth::user()->announcements()->save($this->announcement);
-    
+
+        // Messaggio di successo e pulizia del form
         session()->flash('message', 'Annuncio inserito con successo, sarà pubblicato dopo la revisione');
         $this->cleanForm();
+
+    } catch (\Exception $e) {
+        // Gestione delle eccezioni
+        session()->flash('error', 'Si è verificato un errore durante l\'inserimento dell\'annuncio.');
     }
+}
     
     public function updated($propertyName)
     {
