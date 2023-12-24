@@ -18,7 +18,7 @@
                         Fatti notare online con un sito web, un negozio online o un portfolio professionali.
                     </span>
                 </p>
-                <a href="#" class="btn-info btn">
+                <a href="{{route('requestSite')}}" class="btn-info btn">
                     <span class="link__text" property="name">Inizia da qui</span>
                 </a>
             </div>

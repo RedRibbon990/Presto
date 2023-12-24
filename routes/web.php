@@ -36,8 +36,7 @@ Route::get('/revisor/home', [RevisorController::class, 'index'])->middleware('is
 Route::patch('/accetta/annuncio/{announcement}', [RevisorController::class, 'acceptAnnouncement'])->name('revisor.accept_announcement');
     // Reject
 Route::patch('/rifiuta/annuncio/{announcement}', [RevisorController::class, 'rejectAnnouncement'])->name('revisor.reject_announcement');
-
-// Revisor Request
+    // Revisor Request
 Route::get('/richiesta/revisore', [RevisorController::class, 'becomeRevisor'])->middleware('auth')->name('become.revisor');
     // Make user revisor
 Route::get('/rendi/revisore/{user}', [RevisorController::class, 'makeRevisor'])->name('make.revisor');
@@ -45,3 +44,5 @@ Route::get('/rendi/revisore/{user}', [RevisorController::class, 'makeRevisor'])-
 // Set Language
 Route::post('/lingua/{lang}', [FrontController::class, 'setLanguage'])->name('set_language_locale');
 
+//
+Route::get('/richiesta/website/', [FrontController::class, 'showRequestSite'])->name('requestSite');
